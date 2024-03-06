@@ -26,19 +26,19 @@
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M4 6h16v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6z"
+              d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
             />
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+              d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
             />
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M15 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+              d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
             />
           </svg>
         </button>

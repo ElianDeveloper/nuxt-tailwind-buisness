@@ -1,4 +1,3 @@
-import welcomePage from './welcomePage.vue';
 <template>
   <div>
     <NavBar />
