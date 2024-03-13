@@ -7,6 +7,7 @@
     <ul class="hidden md:flex space-x-6">
       <li>
         <nuxt-link
+          to="/"
           class="hover:cursor-pointer"
           v-bind:style="{ color: 'inherit' }"
         >
@@ -14,59 +15,36 @@
         </nuxt-link>
       </li>
       <li>
-        <button @click="toggleMenu">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
-            />
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
-            />
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
-            />
-          </svg>
-        </button>
+        <nuxt-link
+          to="/products"
+          class="hover:cursor-pointer"
+          v-bind:style="{ color: 'inherit' }"
+          >Products</nuxt-link
+        >
+      </li>
+      <li>
+        <nuxt-link
+          to="/"
+          class="hover:cursor-pointer"
+          v-bind:style="{ color: 'inherit' }"
+          >Sells</nuxt-link
+        >
+      </li>
+      <li>
+        <nuxt-link
+          to="/"
+          class="hover:cursor-pointer"
+          v-bind:style="{ color: 'inherit' }"
+          >Expenses</nuxt-link
+        >
       </li>
     </ul>
   </nav>
-
-  <div
-    v-show="showMenu"
-    class="fixed inset-0 bg-gray-800 opacity-75 backdrop-blur transition duration-300 ease-in-out z-50"
-  >
-    <ul
-      class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center space-y-4 text-center text-xl font-bold text-white"
-    >
-      <li @click="toggleMenu">
-        <nuxt-link to="/">Products</nuxt-link>
-      </li>
-      <li @click="toggleMenu">
-        <nuxt-link to="/">Sells</nuxt-link>
-      </li>
-      <li @click="toggleMenu">
-        <nuxt-link to="/">Expenses</nuxt-link>
-      </li>
-    </ul>
-  </div>
 </template>
 
 <script>
+import Sidebar from "./Sidebar.vue";
+
 export default {
   data() {
     return {
