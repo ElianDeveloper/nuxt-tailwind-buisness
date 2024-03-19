@@ -4,7 +4,7 @@
     <main class="container mx-auto py-4 h-full">
       <router-view />
     </main>
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 
