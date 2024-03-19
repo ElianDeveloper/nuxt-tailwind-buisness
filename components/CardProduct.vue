@@ -1,26 +1,53 @@
 <template>
-  <section class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-wrap -m-4">
-        <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-          <a class="block relative h-48 rounded overflow-hidden">
+  <div class="bg-white">
+    <div
+      class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
+    >
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900">List Products</h2>
+
+      <div
+        class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
+      >
+        <div
+          v-for="product in products"
+          :key="product.id"
+          class="group relative"
+        >
+          <div
+            class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
+          >
             <img
-              alt="ecommerce"
-              class="object-cover object-center w-full h-full block"
-              src="https://dummyimage.com/420x260"
+              src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
+              alt="product.imageAlt"
+              class="h-full w-full object-cover object-center lg:h-full lg:w-full"
             />
-          </a>
-          <div class="mt-4">
-            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
-              CATEGORY
-            </h3>
-            <h2 class="text-gray-900 title-font text-lg font-medium">
-              Hamburger
-            </h2>
-            <p class="mt-1">$20.00</p>
+          </div>
+          <div class="mt-4 flex justify-between">
+            <div>
+              <h3 class="text-sm text-gray-700">
+                <a href="#">
+                  <span aria-hidden="true" class="absolute inset-0" />
+                  {{ product.name }}
+                </a>
+              </h3>
+              <p class="mt-1 text-sm text-gray-500">
+                Amount: {{ product.amount }}
+              </p>
+            </div>
+            <p class="text-sm font-medium text-gray-900">
+              ${{ product.price }}
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
+
+<script setup>
+import { defineProps } from "vue";
+
+const props = defineProps({
+  products: Array,
+});
+</script>
