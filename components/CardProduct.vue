@@ -3,7 +3,9 @@
     <div
       class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
     >
-      <h2 class="text-2xl font-bold tracking-tight text-gray-900">List Products</h2>
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900">
+        List Products
+      </h2>
 
       <div
         class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
@@ -25,10 +27,10 @@
           <div class="mt-4 flex justify-between">
             <div>
               <h3 class="text-sm text-gray-700">
-                <a href="#">
+                <NuxtLink :to="`/products/update/${product.id}`">
                   <span aria-hidden="true" class="absolute inset-0" />
                   {{ product.name }}
-                </a>
+                </NuxtLink>
               </h3>
               <p class="mt-1 text-sm text-gray-500">
                 Amount: {{ product.amount }}
@@ -45,8 +47,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
-
 const props = defineProps({
   products: Array,
 });

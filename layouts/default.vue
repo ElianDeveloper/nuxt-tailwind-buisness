@@ -1,6 +1,6 @@
 <template>
   <div style="height: 100vh">
-    <NavBar />
+    <Header />
     <main class="container mx-auto py-4 h-full">
       <router-view />
     </main>
@@ -8,13 +8,23 @@
   </div>
 </template>
 
+<!-- <template>
+  <div style="height: 100vh; display: flex; flex-direction: column">
+    <Header />
+    <main class="container mx-auto py-4 h-full">
+      <router-view />
+    </main>
+    <Footer />
+  </div>
+</template> -->
+
 <script>
 import Footer from "../components/Footer.vue";
-import NavBar from "../components/NavBar.vue";
+import Header from "../components/Header.vue";
 
 export default {
   components: {
-    NavBar,
+    Header,
     Footer,
   },
   name: "default",
