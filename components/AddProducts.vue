@@ -47,7 +47,7 @@
           </button>
         </div>
         <!-- Modal body -->
-        <form class="p-4 md:p-5">
+        <form class="p-4 md:p-5" @submit.prevent="submitProduct">
           <div class="grid gap-4 mb-4 grid-cols-2">
             <div class="col-span-2">
               <label
@@ -61,6 +61,8 @@
                 id="name"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Type product name"
+                v-model="newProduct.name"
+                required
               />
             </div>
             <div class="col-span-2 sm:col-span-1">
@@ -75,9 +77,27 @@
                 id="price"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="$2999"
+                v-model="newProduct.price"
+                required
               />
             </div>
             <div class="col-span-2 sm:col-span-1">
+              <label
+                for="price"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Amount</label
+              >
+              <input
+                type="number"
+                name="price"
+                id="price"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                placeholder="Amount"
+                v-model="newProduct.amount"
+                required
+              />
+            </div>
+            <!-- <div class="col-span-2 sm:col-span-1">
               <label
                 for="category"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -91,7 +111,7 @@
                 <option value="Food">Food</option>
                 <option value="Drink">Drink</option>
               </select>
-            </div>
+            </div> -->
             <div class="col-span-2">
               <label
                 for="description"
@@ -103,6 +123,8 @@
                 rows="4"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Write product description here"
+                v-model="newProduct.description"
+                required
               ></textarea>
             </div>
           </div>
@@ -134,13 +156,40 @@
   ></div>
 </template>
 
-<script>
-export default {
-  name: "AddProduct",
-  data() {
-    return {
-      toggleModal: false,
-    };
-  },
+<script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useRuntimeConfig } from "#app";
+
+const runtimeConfig = useRuntimeConfig();
+const router = useRouter();
+const toggleModal = ref(false);
+
+const newProduct = reactive({
+  name: "",
+  description: "",
+  amount: null,
+  price: null,
+});
+
+const submitProduct = async () => {
+  try {
+    const response = await $fetch(`${runtimeConfig.public.baseUrl}/product`, {
+      method: "POST",
+      body: JSON.stringify(newProduct),
+    });
+
+    if (response.error) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    console.log("Product added successfully");
+
+    router.push("/products");
+
+    toggleModal.value = false;
+  } catch (error) {
+    console.log("Error add product --> " + error);
+  }
 };
 </script>
